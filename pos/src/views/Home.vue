@@ -9,13 +9,15 @@
             <div>
               <div>{{ prod.title }}</div>
               <div>{{ prod.price }}</div>
-              <button @click="add(prod.price)">Add</button>
-              <button @click="subtract(prod.price)">Subtract</button>
+              <button @click="addAsObject(prod.title, prod.price)">Add</button>
+              <button @click="removeObject(prod)">Remove</button>
             </div>
           </li>
       </div>
     </ul>
-    <label>{{ sum }}</label>
+    <label>All products in basket: {{ ProductsInBasketArray }}</label>
+    <br>
+    <p>Total: {{itemsTotal}}$</p>
   </div>
 </template>
 
@@ -30,8 +32,8 @@ export default {
   },
   data() {
     return{
-      products : [],
-      sum : 0
+      products: [],
+      ProductsInBasketArray: [],
     }
   },
   mounted() {
@@ -44,11 +46,18 @@ export default {
     )
   },
   methods:{
-    add:function(price){
-        this.sum += price
+    addAsObject(title,price){
+      this.ProductsInBasketArray.push({title,price});
     },
-    subtract:function(price){
-        this.sum -= price
+    removeObject(prod) {
+      let idx = this.ProductsInBasketArray.findIndex((v)=>prod.title === v.title)
+      if(idx<0) return 
+      this.ProductsInBasketArray.splice(idx,1)
+    }
+  },
+  computed: {
+    itemsTotal() {
+      return this.ProductsInBasketArray.reduce((a, c) => a + c.price, 0)
     }
   }
 }
