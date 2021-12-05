@@ -37,6 +37,7 @@ export default {
     }
   },
   mounted() {
+    // henter produkter fra API via url.
     axios.get('https://localhost:5001/Product')
     .then(
       (response) => this.products = response.data
@@ -46,15 +47,21 @@ export default {
     )
   },
   methods:{
+    // Tilføjer produktet til ProductsInBasketArray som object.
     addAsObject(title,price){
       this.ProductsInBasketArray.push({title,price});
     },
+    /* Finder det specifikke produkt object i ProductsInBasketArray, 
+    hvis der findes et object i array'et som indeholder en titel der matcher 
+    det vi forsøger at slette, bliver produktet fjernet fra array. */
     removeObject(prod) {
-      let idx = this.ProductsInBasketArray.findIndex((v)=>prod.title === v.title)
-      if(idx<0) return 
-      this.ProductsInBasketArray.splice(idx,1)
+      let foundValue = this.ProductsInBasketArray.findIndex((v)=>prod.title === v.title)
+      if(foundValue<0) return 
+      this.ProductsInBasketArray.splice(foundValue,1)
     }
   },
+  // https://v3.vuejs.org/guide/computed.html#computed-properties
+  // viser summen af all produkt priser der er i array af objekter.
   computed: {
     itemsTotal() {
       return this.ProductsInBasketArray.reduce((a, c) => a + c.price, 0)
