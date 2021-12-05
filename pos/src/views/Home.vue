@@ -1,14 +1,25 @@
 <template>
   <div class="home">
+    <HelloWorld msg="Products"/>
     <ul>
-      <li v-for="prod in products" :key="prod.productId">{{ prod.title }} - {{ prod.description }} - {{ prod.price }} - {{ prod.category }}</li>
+      <div style="display:flex;">
+        <li class="productContainer" 
+          v-for="prod in products" 
+          :key="prod.productId">
+            <div>
+              <div>{{ prod.title }}</div>
+              <div>{{ prod.price }}</div>
+              <button @click="add(prod.price)">Add</button>
+              <button @click="subtract(prod.price)">Subtract</button>
+            </div>
+          </li>
+      </div>
     </ul>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <label>{{ sum }}</label>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import axios from 'axios'
 
@@ -19,7 +30,8 @@ export default {
   },
   data() {
     return{
-      products : []
+      products : [],
+      sum : 0
     }
   },
   mounted() {
@@ -30,6 +42,28 @@ export default {
     .catch(
       (message) => console.log(message)
     )
+  },
+  methods:{
+    add:function(price){
+        this.sum += price
+    },
+    subtract:function(price){
+        this.sum -= price
+    }
   }
 }
 </script>
+
+<style>
+  .productContainer{
+    width: 200px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px;
+    background-color: #ececec;
+    margin: 5px;
+    border: 1px solid gray;
+  }
+</style>
