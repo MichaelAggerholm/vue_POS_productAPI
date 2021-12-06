@@ -1,11 +1,12 @@
 <template>
   <div class="home">
     <HelloWorld msg="Products"/>
-    <ul>
-      <div style="display:flex;">
-        <li class="productContainer" 
-          v-for="prod in products" 
-          :key="prod.productId">
+    <div style="display: flex;">
+      <ul>
+        <div style="display:flex; background-color: lightgray;">
+          <li class="productContainer" 
+            v-for="prod in products" 
+            :key="prod.productId">
             <div>
               <div>{{ prod.title }}</div>
               <div>{{ prod.price }}</div>
@@ -15,9 +16,12 @@
           </li>
       </div>
     </ul>
-    <label>All products in basket: {{ ProductsInBasketArray }}</label>
+    <div class="inBasketContainer">
+      <label>All products in basket: {{ ProductsInBasketArray }}</label>
+    </div>
     <br>
     <p>Total: {{itemsTotal}}$</p>
+    </div>
   </div>
 </template>
 
@@ -81,5 +85,13 @@ export default {
     background-color: #ececec;
     margin: 5px;
     border: 1px solid gray;
+  }
+  .inBasketContainer{
+    width: 300px;
+    min-height: auto;
+    background-color: lightgray;
+    display: flex;
+    margin-top: 16px;
+    margin-left: 16px;
   }
 </style>
