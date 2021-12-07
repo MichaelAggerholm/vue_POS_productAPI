@@ -20,9 +20,12 @@ namespace api.Controllers
 
         private static List<Product> productList = new List<Product>
         {
-            new Product() { ProductId = 1, title = "Æble", price = 4},
-            new Product() { ProductId = 2, title = "Pære", price = 3},
+            new Product() { ProductId = 1, title = "Æble", price = 2},
+            new Product() { ProductId = 2, title = "Pære", price = 2},
             new Product() { ProductId = 3, title = "Banan", price = 2},
+            new Product() { ProductId = 1, title = "Appelsin", price = 4},
+            new Product() { ProductId = 2, title = "Melon", price = 11},
+            new Product() { ProductId = 3, title = "Juice", price = 5},
         };
 
         [HttpGet]

@@ -3,7 +3,7 @@
     <HelloWorld msg="Products"/>
     <div style="display: flex;">
       <ul>
-        <div style="display:flex; background-color: lightgray;">
+        <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
           <li class="productContainer" 
             v-for="prod in products" 
             :key="prod.productId">
@@ -11,17 +11,37 @@
               <div>{{ prod.title }}</div>
               <div>{{ prod.price }}</div>
               <button @click="addAsObject(prod.title, prod.price)">Add</button>
-              <button @click="removeObject(prod)">Remove</button>
+              <!--<button @click="removeObject(prod)">Remove</button>-->
             </div>
           </li>
-      </div>
-    </ul>
-    <div class="inBasketContainer">
+        </div>
+      </ul>
+    </div>
+
+    <div style="display: flex;">
+      <ul>
+        <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
+          <li class="productContainer" 
+            v-for="basketProd in ProductsInBasketArray" 
+            :key="basketProd.title">
+            <div>
+              <div>{{ basketProd.title }}</div>
+              <button @click="removeObject(basketProd)">Remove</button>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <p>Total: {{itemsTotal}}$</p>
+    
+
+    <!--<div class="inBasketContainer">
       <label>All products in basket: {{ ProductsInBasketArray }}</label>
     </div>
     <br>
     <p>Total: {{itemsTotal}}$</p>
-    </div>
+    </div>-->
   </div>
 </template>
 
