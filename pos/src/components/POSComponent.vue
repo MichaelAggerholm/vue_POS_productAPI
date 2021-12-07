@@ -1,48 +1,43 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Products"/>
-    <div style="display: flex;">
-      <ul>
-        <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
-          <li class="productContainer" 
-            v-for="prod in products" 
-            :key="prod.productId"
-            @click="addAsObject(prod.title, prod.price)">
-            <div>
-              <div>{{ prod.title }}</div>
-              <div>{{ prod.price }} Kr,-</div>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
+<p style="font-weight:600;">Total: {{itemsTotal}} Kr,-</p>
+  <div style="display: flex;">
+    <ul>
+      <div style="display: flex;flex-direction: row;flex-wrap: wrap;max-width: 700px;">
+        <li class="productContainer" 
+          v-for="prod in products" 
+          :key="prod.productId"
+          @click="addAsObject(prod.title, prod.price)">
+          <div>
+            <div>{{ prod.title }}</div>
+            <div>{{ prod.price }} Kr,-</div>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
 
-    <div style="display: flex;">
-      <ul>
-        <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
-          <li class="productContainer" 
-            v-for="basketProd in ProductsInBasketArray" 
-            :key="basketProd.title"
-            @click="removeObject(basketProd)">
-            <div>
-              <div>{{ basketProd.title }}</div>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-    <p>Total: {{itemsTotal}} Kr,-</p>
+  <div style="display: flex;">
+    <ul>
+      <div style="display: flex;flex-direction: row;flex-wrap: wrap;max-width: 700px;">
+        <li class="productContainer" 
+          v-for="basketProd in ProductsInBasketArray" 
+          :key="basketProd.title"
+          @click="removeObject(basketProd)">
+          <div>
+            <div>{{ basketProd.title }}</div>
+          </div>
+        </li>
+      </div>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 import axios from 'axios'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: 'POSComponent',
+  props: {
   },
   data() {
     return{
@@ -84,7 +79,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .productContainer{
     width: 200px;
     height: 80px;
