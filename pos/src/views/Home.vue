@@ -6,12 +6,11 @@
         <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
           <li class="productContainer" 
             v-for="prod in products" 
-            :key="prod.productId">
+            :key="prod.productId"
+            @click="addAsObject(prod.title, prod.price)">
             <div>
               <div>{{ prod.title }}</div>
-              <div>{{ prod.price }}</div>
-              <button @click="addAsObject(prod.title, prod.price)">Add</button>
-              <!--<button @click="removeObject(prod)">Remove</button>-->
+              <div>{{ prod.price }} Kr,-</div>
             </div>
           </li>
         </div>
@@ -23,25 +22,16 @@
         <div style="display: flex;background-color: lightgray;flex-direction: row;flex-wrap: wrap;max-width: 630px;">
           <li class="productContainer" 
             v-for="basketProd in ProductsInBasketArray" 
-            :key="basketProd.title">
+            :key="basketProd.title"
+            @click="removeObject(basketProd)">
             <div>
               <div>{{ basketProd.title }}</div>
-              <button @click="removeObject(basketProd)">Remove</button>
             </div>
           </li>
         </div>
       </ul>
     </div>
-
-    <p>Total: {{itemsTotal}}$</p>
-    
-
-    <!--<div class="inBasketContainer">
-      <label>All products in basket: {{ ProductsInBasketArray }}</label>
-    </div>
-    <br>
-    <p>Total: {{itemsTotal}}$</p>
-    </div>-->
+    <p>Total: {{itemsTotal}} Kr,-</p>
   </div>
 </template>
 
