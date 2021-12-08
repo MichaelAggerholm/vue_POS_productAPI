@@ -10,6 +10,6 @@ namespace api
 
         public float price { get; set; }
 
-        public string color { get; set; }
+        public string category { get; set; }
     }
 }
